@@ -17,8 +17,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 HOSTNAME="${COLLECTD_HOSTNAME:-$(hostname -f)}"
-#INTERVAL="${COLLECTD_INTERVAL:-60}"
-INTERVAL="${COLLECTD_INTERVAL:-1}" # for testing
+INTERVAL="${COLLECTD_INTERVAL:-60}"
 
 # In principle DCMI is nice in that it provides a tighter specified subset of IPMI.
 # For power consumption, this seems to work.
