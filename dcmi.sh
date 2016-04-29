@@ -66,7 +66,7 @@ while :; do
 	    IFS=","; declare -a arr=($line)
 	    IFS=$IFSORIG
 	    val=${arr[3]}
-	    echo "PUTVAL \"$HOSTNAME/dcmi/inlet-temperature\" interval=$INTERVAL N:$val"
+	    echo "PUTVAL \"$HOSTNAME/dcmi/temperature-inlet\" interval=$INTERVAL N:$val"
 	done < <(sudo ipmi-sensors --interpret-oem-data -b --shared-sensors --ignore-not-available-sensors -r $inlet_id --comma-separated-output --no-header-output)
     fi
 
