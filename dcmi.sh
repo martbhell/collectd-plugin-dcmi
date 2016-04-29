@@ -32,6 +32,10 @@ INTERVAL="${COLLECTD_INTERVAL:-60}"
 #   the end, we're only interested in the inlet temperature. So first
 #   try to figure out the record id of the inlet temperature sensor.
 
+# Note: collectd metric names should follow
+# https://collectd.org/wiki/index.php/Naming_schema 
+# See /usr/share/collectd/types.db for list of builtin types
+
 inlet_id=0
 while read line
 do
@@ -57,7 +61,7 @@ while :; do
 	pwr=${a2[0]}
 	break
     done < <(sudo ipmi-dcmi --get-system-power-statistics)
-    [[ ! -z $pwr ]] && echo "PUTVAL \"$HOSTNAME/dcmi/current-power\" interval=$INTERVAL N:$pwr"
+    [[ ! -z $pwr ]] && echo "PUTVAL \"$HOSTNAME/dcmi/power-current\" interval=$INTERVAL N:$pwr"
 
     if [[ $inlet_id -ne 0 ]]; then
 	while read line
