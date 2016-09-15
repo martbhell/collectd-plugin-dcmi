@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Modified by Johan Guldmyr @ CSC - IT Center for Science: only on c* nodes
 #    Fetch power consumption and inlet temperature, forward it to collectd
 #    Copyright (C) 2016  Janne Blomqvist
 #
@@ -35,6 +36,12 @@ INTERVAL="${COLLECTD_INTERVAL:-60}"
 # Note: collectd metric names should follow
 # https://collectd.org/wiki/index.php/Naming_schema 
 # See /usr/share/collectd/types.db for list of builtin types
+
+# Only run this on c* nodes
+if  [[ $HOSTNAME != c* ]] ;
+then
+	exit 0
+fi
 
 inlet_id=0
 while read line
